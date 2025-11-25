@@ -1,0 +1,39 @@
+CREATE DATABASE aanwezigheid_logger;
+USE aanwezigheid_logger;
+
+CREATE TABLE studenten (
+id INT AUTO_INCREMENT PRIMARY KEY,
+stamnr VARCHAR(50) NOT NULL UNIQUE,
+naam VARCHAR(100) NOT NULL,
+voornaam VARCHAR(100) NOT NULL,
+email VARCHAR(150) NOT NULL UNIQUE,
+departement VARCHAR(100) NOT NULL,
+opleiding VARCHAR(150) NOT NULL,
+schooljaar VARCHAR(20) NOT NULL,
+mifare VARCHAR(50) UNIQUE,
+p_persoon INT,
+heeftfoto BOOLEAN DEFAULT FALSE,
+printed BOOLEAN DEFAULT FALSE,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+INDEX idx_stamnr (stamnr),
+INDEX idx_email (email)
+);
+
+CREATE TABLE aanwezigheden (
+id INT AUTO_INCREMENT PRIMARY KEY,
+student_id INT NOT NULL,
+timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+les_of_project VARCHAR(100),
+opmerking VARCHAR(500),
+FOREIGN KEY (student_id) REFERENCES studenten(id) ON DELETE CASCADE,
+INDEX idx_student_id (student_id),
+INDEX idx_timestamp (timestamp)
+);
+
+CREATE TABLE users (
+id INT AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(50) NOT NULL UNIQUE,
+password VARCHAR(255) NOT NULL,
+role VARCHAR(20) NOT NULL DEFAULT 'USER',
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
