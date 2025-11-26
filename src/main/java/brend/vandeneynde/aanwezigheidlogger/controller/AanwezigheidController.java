@@ -1,9 +1,14 @@
 package brend.vandeneynde.aanwezigheidlogger.controller;
 
+import brend.vandeneynde.aanwezigheidlogger.dto.AanwezigheidRequest;
+import brend.vandeneynde.aanwezigheidlogger.model.Aanwezigheid;
+import brend.vandeneynde.aanwezigheidlogger.service.AanwezigheidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+
 
 @RestController
 @RequestMapping("/api/aanwezigheid")
@@ -14,4 +19,32 @@ public class AanwezigheidController {
     public ResponseEntity<String> test() {
         return ResponseEntity.ok("Aanwezigheid API werkt! ✅");
     }
+
+    @Autowired
+    private AanwezigheidService aanwezigheidService;
+
+    @PostMapping
+    public ResponseEntity<?> registreerAanwezigheid(@RequestBody AanwezigheidRequest request) {
+        try {
+            // Validatie: is stamnr ingevuld?
+            if (request.getStamnr() == null || request.getStamnr().isEmpty()) {
+                return ResponseEntity
+                        .status(HttpStatus.BAD_REQUEST)
+                        .body("Stamnummer is verplicht");
+            }
+
+            // Roep service aan om aanwezigheid te registreren
+            Aanwezigheid aanwezigheid = aanwezigheidService.registreerAanwezigheid(request);
+
+            // Success! Stuur 200 OK terug met de aanwezigheid data
+            return ResponseEntity.ok(aanwezigheid);
+
+        } catch (Exception e) {
+            // Fout! Student niet gevonden of andere error
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Error: " + e.getMessage());
+        }
+    }
+
 }
