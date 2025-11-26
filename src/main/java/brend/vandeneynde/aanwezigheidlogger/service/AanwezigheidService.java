@@ -19,7 +19,7 @@ public class AanwezigheidService {
     private AanwezigheidRepository aanwezigheidRepository;
 
     public Aanwezigheid registreerAanwezigheid(AanwezigheidRequest request) throws Exception{
-        Student student = studentRepository.zoekStamnr(request.getStamnr());
+        Student student = studentRepository.findByStamnr(request.getStamnr());
 
         if (student == null) {
             throw new Exception("Student met stamnummer " + request.getStamnr() + " niet gevonden");
