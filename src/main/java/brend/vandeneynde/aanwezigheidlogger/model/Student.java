@@ -1,7 +1,15 @@
 package brend.vandeneynde.aanwezigheidlogger.model;
 
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "studenten")
 public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String departement;
     private String email;
     private boolean heeftfoto;

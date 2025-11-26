@@ -2,10 +2,18 @@ package brend.vandeneynde.aanwezigheidlogger.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "aanwezigheden")
 public class Aanwezigheid {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "student_id")
     private int studentId;
     private LocalDateTime timestamp;
+    @Column(name = "les_of_project")
     private String lesOfProject;
     private String opmerking;
 
