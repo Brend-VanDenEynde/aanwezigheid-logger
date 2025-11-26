@@ -5,12 +5,17 @@ import brend.vandeneynde.aanwezigheidlogger.model.Aanwezigheid;
 import brend.vandeneynde.aanwezigheidlogger.model.Student;
 import brend.vandeneynde.aanwezigheidlogger.repository.AanwezigheidRepository;
 import brend.vandeneynde.aanwezigheidlogger.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class AanwezigheidService {
+    @Autowired
     private StudentRepository studentRepository;
+    @Autowired
     private AanwezigheidRepository aanwezigheidRepository;
 
     public Aanwezigheid registreerAanwezigheid(AanwezigheidRequest request) throws Exception{
@@ -26,5 +31,13 @@ public class AanwezigheidService {
         aanwezigheid.setTimestamp(LocalDateTime.now());
 
         return aanwezigheidRepository.save(aanwezigheid);
+    }
+
+    public List<Aanwezigheid> getAlleAanwezigheden() {
+        return aanwezigheidRepository.findAll();
+    }
+
+    public Student getStudentById(int studentId) {
+        return studentRepository.findById(studentId).orElse(null);
     }
 }
