@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.*;
 import java.util.*;
 
 
@@ -45,6 +46,23 @@ public class AanwezigheidController {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body("Error: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/datum/{datum}")
+    public ResponseEntity<?> getAanwezighedenVoorDag(@PathVariable String datum) {
+        try {
+            // Converteer String naar LocalDateTime
+            LocalDate date = LocalDate.parse(datum);
+            LocalDateTime dateTime = date.atStartOfDay();
+
+            List<Aanwezigheid> aanwezigheden = aanwezigheidService.getAanwezighedenVoorDag(dateTime);
+            return ResponseEntity.ok(aanwezigheden);
+
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Ongeldige datum formaat. Gebruik: YYYY-MM-DD");
         }
     }
 
