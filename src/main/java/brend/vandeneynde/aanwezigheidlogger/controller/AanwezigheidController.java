@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.*;
 
 
 @RestController
@@ -45,6 +46,12 @@ public class AanwezigheidController {
                     .status(HttpStatus.NOT_FOUND)
                     .body("Error: " + e.getMessage());
         }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Aanwezigheid>> getAlleAanwezigheden() {
+        List<Aanwezigheid> aanwezigheden = aanwezigheidService.getAlleAanwezigheden();
+        return ResponseEntity.ok(aanwezigheden);
     }
 
 }
