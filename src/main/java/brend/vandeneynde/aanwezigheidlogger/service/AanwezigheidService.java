@@ -40,4 +40,11 @@ public class AanwezigheidService {
     public Student getStudentById(int studentId) {
         return studentRepository.findById(studentId).orElse(null);
     }
+
+    public List<Aanwezigheid> getAanwezighedenVoorDag(LocalDateTime datum) {
+        LocalDateTime startVanDag = datum.withHour(0).withMinute(0).withSecond(0);
+        LocalDateTime eindeVanDag = datum.withHour(23).withMinute(59).withSecond(59);
+
+        return aanwezigheidRepository.findByTimestampBetween(startVanDag, eindeVanDag);
+    }
 }
