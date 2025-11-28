@@ -56,7 +56,6 @@ public class AanwezigheidController {
     @GetMapping("/datum/{datum}")
     public ResponseEntity<?> getAanwezighedenVoorDag(@PathVariable String datum) {
         try {
-            // Converteer String naar LocalDateTime
             LocalDate date = LocalDate.parse(datum);
             LocalDateTime dateTime = date.atStartOfDay();
 
@@ -76,18 +75,14 @@ public class AanwezigheidController {
         return ResponseEntity.ok(aanwezigheden);
     }
 
-    // CSV export
 
     @GetMapping("/export")
     public ResponseEntity<String> exportAlleAanwezigheden() {
         try {
-            // Haal alle aanwezigheden op
             List<Aanwezigheid> aanwezigheden = aanwezigheidService.getAlleAanwezigheden();
 
-            // Converteer naar CSV
             String csv = csvExportService.exportAanwezighedenNaarCsv(aanwezigheden);
 
-            // Return CSV met juiste headers voor download
             return ResponseEntity.ok()
                     .header("Content-Type", "text/csv")
                     .header("Content-Disposition", "attachment; filename=aanwezigheden.csv")
@@ -106,14 +101,10 @@ public class AanwezigheidController {
             // Converteer datum String naar LocalDateTime
             LocalDate date = LocalDate.parse(datum);
             LocalDateTime dateTime = date.atStartOfDay();
-
-            // Haal aanwezigheden van die dag op
             List<Aanwezigheid> aanwezigheden = aanwezigheidService.getAanwezighedenVoorDag(dateTime);
 
-            // Converteer naar CSV
             String csv = csvExportService.exportAanwezighedenNaarCsv(aanwezigheden);
 
-            // Return CSV met juiste headers voor download
             return ResponseEntity.ok()
                     .header("Content-Type", "text/csv")
                     .header("Content-Disposition", "attachment; filename=aanwezigheden_" + datum + ".csv")
