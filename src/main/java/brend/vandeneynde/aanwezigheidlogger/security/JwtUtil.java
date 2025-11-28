@@ -16,13 +16,13 @@ public class JwtUtil {
 
     private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    private final long EXPIRATION_TIME = 1000 * 60 * 60 * 24; // 24 Uur
-
 
     public String generateToken(String username, String role) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", role);
 
+        // 24 Uur
+        long EXPIRATION_TIME = 1000 * 60 * 60 * 24;
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(username)
