@@ -15,7 +15,6 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/aanwezigheid")
-@CrossOrigin(origins = "*")
 public class AanwezigheidController {
 
 
