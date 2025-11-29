@@ -18,10 +18,6 @@ import java.util.*;
 @CrossOrigin(origins = "*")
 public class AanwezigheidController {
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok("Aanwezigheid API werkt! ✅");
-    }
 
     @Autowired
     private AanwezigheidService aanwezigheidService;
