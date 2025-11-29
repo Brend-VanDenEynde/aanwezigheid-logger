@@ -49,7 +49,7 @@ public class AanwezigheidController {
         }
     }
 
-    @GetMapping("/datum/{datum}")
+    @GetMapping("/dag/{datum}")
     public ResponseEntity<?> getAanwezighedenVoorDag(@PathVariable String datum) {
         try {
             LocalDate date = LocalDate.parse(datum);
