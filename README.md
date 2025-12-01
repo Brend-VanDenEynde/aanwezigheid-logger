@@ -162,5 +162,19 @@ npm run preview      # Preview productie build
 
 Brend Van den Eynde
 
+## Bronnen
+
+* YouTube-video: [https://www.youtube.com/watch?v=Zo9xQzibp4Y](https://www.youtube.com/watch?v=Zo9xQzibp4Y)
+* Documentatie van Spring Boot: [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)
+* Baeldung – OpenCSV uitleg: [https://www.baeldung.com/opencsv](https://www.baeldung.com/opencsv)
+
+## AI gebruik
+
+* Inline AI-completion gebruikt tijdens ontwikkeling
+* AI-ondersteuning gebruikt voor Front-end
+* AI-hulp gebruikt voor CORS-configuratie
+* AI-hulp gebruikt voor `.env`-support
+
+
 
 
