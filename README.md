@@ -158,6 +158,12 @@ npm run preview      # Preview productie build
 - Gevoelige data (wachtwoorden, secrets) worden opgeslagen in `.env`
 - `.env` bestand staat in `.gitignore` en wordt NIET gecommit
 
+## Extra documentatie
+
+* [Ga naar de database code](database.md)
+* [Ga naar de documentatie code](DOCUMENTATION.md)
+
+
 ##  Auteur
 
 Brend Van den Eynde
@@ -171,9 +177,10 @@ Brend Van den Eynde
 ## AI gebruik
 
 * Inline AI-completion gebruikt tijdens ontwikkeling
-* AI-ondersteuning gebruikt voor Front-end
+* AI-agent-mode gebruikt voor Front-end
 * AI-hulp gebruikt voor CORS-configuratie
 * AI-hulp gebruikt voor `.env`-support
+* AI-hulp voor styling van .md files
 
 
 
